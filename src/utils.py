@@ -3,6 +3,8 @@ import sys
 import logging
 from logging.handlers import RotatingFileHandler
 from pika import ConnectionParameters, PlainCredentials, BlockingConnection
+MQ_ADDR = os.environ.get("MQ_ADDR")
+MQ_PORT = os.environ.get("MQ_PORT")
 MQ_USER = os.environ.get("MQ_USER")
 MQ_PASS = os.environ.get("MQ_PASS")
 
@@ -25,7 +27,7 @@ def get_log(mission_name):
     log_obj.setLevel(logging.INFO)
     return log_obj
 
-def connect_mq(host="10.0.12.17", port=60005, user=MQ_USER, passwd=MQ_PASS, queue="sms"):
+def connect_mq(host=MQ_ADDR, port=MQ_PORT, user=MQ_USER, passwd=MQ_PASS, queue="sms"):
     user_info = PlainCredentials(user, passwd) # 用户名和密码
     params = ConnectionParameters(host, port, '/', user_info)
     connection = BlockingConnection(params) # 连接服务器上的RabbitMQ服务
