@@ -30,9 +30,9 @@ docker run -d --restart=always \
 rabbitmq:3.12.14-management-plugins
 
 ## 5、docker run socket服务端容器
-（1）12345端口为socket服务端接收tcp消息端口
-（2）通过MQ_ADDR、MQ_PORT、MQ_USER、MQ_PASS指定发送的消息队列
-（3）容器/root/socket_mq/src/logs路径为socket服务端日志输出路径
+（1）12345端口为socket服务端接收tcp消息端口；
+（2）通过MQ_ADDR、MQ_PORT、MQ_USER、MQ_PASS指定发送的消息队列；
+（3）容器/root/socket_mq/src/logs路径为socket服务端日志输出路径。
 
 docker run -d \
 --restart=always \
@@ -45,4 +45,11 @@ docker run -d \
 -v /home/l241025097/socket_mq/src/logs:/root/socket_mq/src/logs \
 python_socket:3.10.15
 
-## 6、运行
+## 6、进入socket服务端容器
+docker exec -it internet_socket_server /bin/bash
+
+## 7、在socket服务端容器中操作：发送测试消息
+/usr/local/bin/python3 /root/socket_mq/src/test_socket_server.py
+
+## 8、在socket服务端容器中操作：接收测试消息
+/usr/local/bin/python3 /root/socket_mq/src/test_mq_client.py
