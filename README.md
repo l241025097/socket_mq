@@ -15,9 +15,9 @@ docker build -t rabbitmq:3.12.14-management-plugins -f Dockerfile.mq .
 docker build -t python_socket:3.10.15 .
 
 ## 4、docker run rabbitmq容器
-15672端口为消息队列网页端访问端口
-5672端口为消息队列发送消息和接收消息的端口
-RABBITMQ_DEFAULT_USER和RABBITMQ_DEFAULT_PASS是登录消息队列网页端，以及发送和接收消息时鉴权的用户名和密码
+（1）15672端口为消息队列网页端访问端口；
+（2）5672端口为消息队列发送消息和接收消息的端口；
+（3）RABBITMQ_DEFAULT_USER和RABBITMQ_DEFAULT_PASS是登录消息队列网页端，以及发送和接收消息时鉴权的用户名和密码。
 
 docker run -d --restart=always \
 --hostname internet_mq_server \
@@ -30,9 +30,9 @@ docker run -d --restart=always \
 rabbitmq:3.12.14-management-plugins
 
 ## 5、docker run socket服务端容器
-12345端口为socket服务端接收tcp消息端口
-通过MQ_ADDR、MQ_PORT、MQ_USER、MQ_PASS指定发送的消息队列
-容器/root/socket_mq/src/logs路径为socket服务端日志输出路径
+（1）12345端口为socket服务端接收tcp消息端口
+（2）通过MQ_ADDR、MQ_PORT、MQ_USER、MQ_PASS指定发送的消息队列
+（3）容器/root/socket_mq/src/logs路径为socket服务端日志输出路径
 
 docker run -d \
 --restart=always \
