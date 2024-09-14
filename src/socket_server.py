@@ -47,7 +47,7 @@ def execute(socket_server, log_obj):
 
 if __name__ == "__main__":
     BEGIN = datetime.now()
-    APP_NAME = f"gx_internet_msg_project"
+    APP_NAME = f"internet_msg_project"
     log_obj = get_log(APP_NAME)
     log_obj.info(f"start: {BEGIN}".center(100, "-"))
     socket_server = create_server()
