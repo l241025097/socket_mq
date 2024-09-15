@@ -1,17 +1,13 @@
 from utils import connect_mq
-from json import loads
 
 connection, channel = connect_mq()
 
-mail_list = []
-
 # 回调函数
 def callback(ch, method, properties, body):
+    print(ch)
+    print(method)
+    print(properties)
     body_str = body.decode()
-    msg_dict = loads(body_str)
-    msg_list = msg_dict["msg"].split("\n")
-    msg_content = msg_list[1]
-    mail_list.append(msg_content)
     print(f'消费者收到: {body_str}')
     ch.stop_consuming()
 
@@ -19,7 +15,6 @@ def callback(ch, method, properties, body):
 # method: 包含 consumer_tag, delivery_tag, exchange, redelivered, routing_key
 # properties: basic_publish 通过 properties 传入的参数
 # body: basic_publish发送的消息
-
 
 channel.basic_consume(
     queue='sms',  # 接收指定queue的消息
