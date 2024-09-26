@@ -21,8 +21,16 @@ def execute(socket_server, log_obj):
         client_socket, _ = socket_server.accept()
         
         # 接收客户端发送的数据
-        received_message = client_socket.recv(1024)  # 1024是接收数据的缓冲区大小
-        received_message_str = received_message.decode('utf-8')
+        received_message = b""
+        while True:
+            data = client_socket.recv(1024)
+            if not data:
+                break
+            received_message += data
+            try:
+                received_message_str = received_message.decode('utf-8')
+            except Exception as err:
+                log_obj.info(err)
         connection, channel = connect_mq()
         try:
             channel.basic_publish(
