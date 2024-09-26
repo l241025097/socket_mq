@@ -26,4 +26,4 @@ RUN pip3 install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip3 install pika==1.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ADD src.tar /root/socket_mq
 WORKDIR /root/socket_mq/src
-CMD /usr/local/bin/python3 socket_server.py
+CMD /usr/local/bin/python3 udp_server.py

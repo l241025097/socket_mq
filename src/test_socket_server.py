@@ -1,8 +1,8 @@
 import socket
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ipv4=socket.gethostbyname_ex(socket.gethostname())[2][0]
-sock.connect((ipv4, 12345))
+ipv4 = socket.gethostbyname_ex(socket.gethostname())[2][0]
+sock.connect(("101.33.240.185", 60002))
 
 send_msg = """和客户端编程相比，服务器编程就要复杂一些。
 
