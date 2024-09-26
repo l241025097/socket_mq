@@ -45,12 +45,12 @@ def execute(socket_server, log_obj):
         # 打印从客户端接收到的消息
         log_obj.info("Received message: " + received_message_str)
         
-        # 发送一个响应消息给客户端
-        response_message = "Hello, Client! I received your message.".encode('utf-8')
-        client_socket.send(response_message)
+        # # 发送一个响应消息给客户端
+        # response_message = "Hello, Client! I received your message.".encode('utf-8')
+        # client_socket.send(response_message)
         
-        # 关闭与客户端的连接
-        client_socket.close()
+        # # 关闭与客户端的连接
+        # client_socket.close()
 
 
 if __name__ == "__main__":
